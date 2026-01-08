@@ -12,20 +12,19 @@ public class PictureTester {
      * method in Java
      */
     public static void main(String[] args) {
-        System.out.println("PICLAB!");
-        // uncomment a call here to run a test
+        System.out.println("PICLAB!");  
         // and comment out the ones you don't want
         // to run
 
         // ------------
         // ACTIVITY 5
         // testZeroBlue();
-        // testKeepOnlyBlue();
-        // testKeepOnlyRed();
+        //testKeepOnlyBlue();
+        //testKeepOnlyRed();
         // testKeepOnlyGreen();
         // testNegate();
         // testGrayscale();
-        // testFixUnderwater();
+         testFixUnderwater();
 
         // --------------
         // ACTIVITY 6
