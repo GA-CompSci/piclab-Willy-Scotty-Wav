@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.text.*;
 import java.util.*;
 import java.util.List; // resolves problem with java.awt.List and java.util.List
+import java.util.function.Consumer;
 
 /**
  * A class that represents a picture. This class inherits from SimplePicture and
@@ -182,9 +183,9 @@ public class Picture extends SimplePicture {
         Pixel[][] Pixels = this.getPixels2D();
          for (Pixel [] row : Pixels){
             for(Pixel p : row){
-                p.setRed(0);
-                p.setBlue(0);
-                p.setGreen(200);
+                p.setRed(p.getRed()*4);
+                p.setBlue(p.getBlue()/2);
+           
             }
         }
 
@@ -198,15 +199,38 @@ public class Picture extends SimplePicture {
      */
     public void mirrorVertical() {
         Pixel[][] picture = this.getPixels2D();
+        for (int row = 0; row < picture.length/2; row++){
+            for(int col = 0; col < picture[0].length; col++){
 
+                Pixel righthalf = picture [row][col];
+                Pixel lefthalf = picture [row] [picture[0].length - 1-col];
+
+
+                lefthalf.setRed(righthalf.getRed());
+                lefthalf.setBlue(righthalf.getBlue());
+                lefthalf.setGreen(righthalf.getGreen());
+           
+            }
+        }
     }
 
     /**
-     * Method that mirrors the picture around a vertical mirror in the center of the
+     * Method that mirrors the picture around a vertical mirror in the center of the ()()()()()()()()()()()()()()()()()()()()()()()()()
      * picture from right to left
      */
     public void mirrorVerticalRightToLeft() {
-        Pixel[][] pixels = this.getPixels2D();
+     Pixel[][] pixels = this.getPixels2D();
+        for (int row = 0; row < pixels.length/2; row++) {
+            for (int col = 0; col < pixels[0].length; col++) {
+                
+                Pixel leftHalf = pixels[row][col];
+                Pixel rightHalf = pixels[row][pixels.length-1-col];
+
+                leftHalf.setRed(rightHalf.getRed());
+                leftHalf.setBlue(rightHalf.getBlue());
+                leftHalf.setGreen(rightHalf.getGreen());
+            }
+        }
 
     }
 
@@ -215,8 +239,18 @@ public class Picture extends SimplePicture {
      * the picture from top to botttom
      */
     public void mirrorHorizontal() {
-        Pixel[][] pixels = this.getPixels2D();
+       Pixel[][] pixels = this.getPixels2D();
+        for (int row = 0; row < pixels.length/2; row++) {
+            for (int col = 0; col < pixels[0].length; col++) {
+                
+                Pixel leftHalf = pixels[pixels.length-1-row][col];
+                Pixel rightHalf = pixels[row][col];
 
+                leftHalf.setRed(rightHalf.getRed());
+                leftHalf.setBlue(rightHalf.getBlue());
+                leftHalf.setGreen(rightHalf.getGreen());
+            }
+        }
     }
 
     /**
@@ -224,8 +258,20 @@ public class Picture extends SimplePicture {
      * the picture from bottom to top
      */
     public void mirrorHorizontalBotToTop() {
+        Pixel[][] pixels = this.getPixels2D();
+        for (int row = 0; row < pixels.length/2; row++) {
+            for (int col = 0; col < pixels[0].length; col++) {
+                
+                Pixel leftHalf = pixels[pixels.length-1-row][col];
+                Pixel rightHalf = pixels[row][col];
 
+                rightHalf.setRed(leftHalf.getRed());
+                rightHalf.setBlue(leftHalf.getBlue());
+               rightHalf.setGreen(leftHalf.getGreen());
+            }
+        }
     }
+
 
     /**
      * Mirror around a mirror positioned on the diagonal line from bottom left to
@@ -233,6 +279,17 @@ public class Picture extends SimplePicture {
      */
     public void mirrorDiagonal() {
         Pixel[][] pixels = this.getPixels2D();
+         for (int row = 0; row < pixels.length/2; row++) {
+            for (int col = 0; col < pixels[0].length; col++) {
+                
+                Pixel leftHalf = pixels[pixels.length-1-row][col];
+                Pixel rightHalf = pixels[row][pixels.length-1-col];
+
+                rightHalf.setRed(leftHalf.getRed());
+                rightHalf.setBlue(leftHalf.getBlue());
+               rightHalf.setGreen(leftHalf.getGreen());
+            }
+        }
 
     }
 
