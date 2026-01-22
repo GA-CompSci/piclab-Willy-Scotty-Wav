@@ -9,7 +9,7 @@
 public class PictureTester {
     /**
      * Main method for testing. Every class can have a main
-     * method in Java
+     * method// in Java
      */
     public static void main(String[] args) {
         System.out.println("PICLAB!");  
@@ -32,13 +32,13 @@ public class PictureTester {
         // testMirrorVerticalRightToLeft();
         // testMirrorHorizontal();
         // testMirrorHorizontalBotToTop();
-         testMirrorDiagonal();
+        // testMirrorDiagonal();
 
         // ---------------
         // ACTIVITY 7
         // testMirrorTemple();
         // testMirrorArms();
-        // testMirrorGull();
+         testMirrorGull();
 
         // ---------------
         // ACTIVITY 8

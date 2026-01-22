@@ -279,11 +279,14 @@ public class Picture extends SimplePicture {
      */
     public void mirrorDiagonal() {
         Pixel[][] pixels = this.getPixels2D();
-         for (int row = 0; row < pixels.length/2; row++) {
-            for (int col = 0; col < pixels[0].length; col++) {
+        Pixel topRight = null;
+        Pixel bottomLeft = null;
+         for (int row = 0; row < pixels.length; row++) {
+            for (int col = 0; col <= row; col++) {
+
                 
-                Pixel leftHalf = pixels[pixels.length-1-row][col];
-                Pixel rightHalf = pixels[row][pixels.length-1-col];
+                Pixel leftHalf = pixels[row][col];
+                Pixel rightHalf = pixels[col][row];
 
                 rightHalf.setRed(leftHalf.getRed());
                 rightHalf.setBlue(leftHalf.getBlue());
@@ -296,16 +299,54 @@ public class Picture extends SimplePicture {
     /** Mirror just part of a picture of a temple */
     public void mirrorTemple() {
         Pixel[][] pixels = this.getPixels2D();
+        int mirrorPoint = 276;
+
+        Pixel topRight = null;
+        Pixel bottomLeft = null;
+         for (int row = 27; row < 97; row++) {
+            for (int col = 13; col <= mirrorPoint; col++) {
+
+                
+                Pixel leftHalf = pixels[row][col];
+                Pixel rightHalf = pixels[row][mirrorPoint - col + mirrorPoint];
+
+                rightHalf.setRed(leftHalf.getRed());
+                rightHalf.setBlue(leftHalf.getBlue());
+               rightHalf.setGreen(leftHalf.getGreen());
+            }
+        }
 
     }
 
     /** Mirror just part of a picture of a snowman */
     public void mirrorArms() {
+        Pixel[][] pixels = this.getPixels2D();
+        int mirrorPoint = 190;
+
+        for(int row = 156; row <= mirrorPoint; row++) {
+            for(int col = 50; col < 0; col++) {
+                Pixel topHalf = pixels[row][col];
+                Pixel bottomHalf = pixels[mirrorPoint - row + mirrorPoint][col];
+                bottomHalf.setColor(topHalf.getColor());
+            }
+        }
 
     }
 
     /** Mirror just the gull */
     public void mirrorGull() {
+        Pixel[][] pixels = this.getPixels2D();
+        int mirrorPoint = 350;
+        Pixel gullPixel = null;
+        Pixel bottomHalf = null;
+
+        for(int row = 225; row <= 335; row++) {
+            for(int col = 235; col <= 350; col++) {
+                gullPixel = pixels[row][col];
+                bottomHalf = pixels[row ][col + 120];
+                bottomHalf.setColor(gullPixel.getColor());
+            }
+        }
 
     }
 
