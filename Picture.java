@@ -377,8 +377,17 @@ public class Picture extends SimplePicture {
     /** Method to create a collage of several pictures */
     public void createCollage() {
         Pixel[][] pixels = this.getPixels2D();
-
+        Picture beach = new Picture("beach.jpg");
+        beach = beach.scale(0.25, 0.25);
+        this.copy(beach, 0, 0);
+        for(int k = 0; k < 4; k++){
+            for(int i = 0; i < 4; i++){
+                this.copy(beach,0, 0, 119, 159, k * 119, i * 159);
+            }
+        }
+        // effects
         this.popArt();
+        
     }
 
     /**
