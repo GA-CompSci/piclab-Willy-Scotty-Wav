@@ -377,16 +377,54 @@ public class Picture extends SimplePicture {
     /** Method to create a collage of several pictures */
     public void createCollage() {
         Pixel[][] pixels = this.getPixels2D();
-        Picture beach = new Picture("beach.jpg");
-        beach = beach.scale(0.25, 0.25);
-        this.copy(beach, 0, 0);
-        for(int k = 0; k < 4; k++){
-            for(int i = 0; i < 4; i++){
-                this.copy(beach,0, 0, 119, 159, k * 119, i * 159);
+        Picture[] beaches = new Picture[16];
+        for(int i = 0; i < beaches.length; i++){
+            beaches[i] = new Picture("beach.jpg");
+            beaches[i].scale(0.25, 0.25);
+            switch(i) {
+                case 0:
+                    beaches[i].keepOnlyBlue();
+                    break;
+                case 1: 
+                    beaches[i].keepOnlyGreen();
+                    break;
+                case 2: 
+                    beaches[i].keepOnlyRed();
+                    break;
+                case 3: 
+                    beaches[i].negate();
+                    break;
+                case 4:
+                    beaches[i].grayscale();
+                    break;
+                case 5:
+                    beaches[i].mirrorDiagonal();
+                    break;
+                case 6:
+                    beaches[i].mirrorHorizontal();
+                    break;
+                case 7:
+                    beaches[i].mirrorGull();
+                    break;
+                case 8:
+                    beaches[i].mirrorArms();
+                    break;
+                case 9:
+                    beaches[i].mirrorVerticalRightToLeft();
+                    break;
+                case 10:
+                    beaches[i].mirrorTemple();
+                    break;
+                     
             }
         }
-        // effects
-        this.popArt();
+        int beachCount = 0;
+        for(int k = 0; k < 4; k++){
+            for(int i = 0; i < 4; i++){
+                this.copy(beaches[beachCount], 0, 0, 119, 159, k * 119, i * 159);
+                beachCount++;
+            }
+        }
         
     }
 
