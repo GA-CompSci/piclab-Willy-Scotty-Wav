@@ -361,8 +361,25 @@ public class Picture extends SimplePicture {
         Pixel[][] pixels = this.getPixels2D();
         Picture swan = new Picture("swan.jpg");
         Pixel[][] original = swan.getPixels2D();
+        Color rightColor = null;
+        for(int row = 0; row< pixels.length; row++){
+           for(int col = 0; col < pixels[0].length - 1; col++){
+            leftPixel = pixels[row][col];
+            rightPixel = pixels[row][col+1];
+            rightColor = rightPixel.getColor();
+            if (leftPixel.colorDistance(rightColor) > edgeDist){
+              leftPixel.setColor(Color.BLACK);
+            }else{
+              leftPixel.setColor(Color.WHITE);   
+            }
+                
+        }
+                
 
+        }
     }
+
+
 
     /**
      * Method to show large changes in color
@@ -380,7 +397,7 @@ public class Picture extends SimplePicture {
         Picture[] beaches = new Picture[16];
         for(int i = 0; i < beaches.length; i++){
             beaches[i] = new Picture("beach.jpg");
-            beaches[i].scale(0.25, 0.25);
+            beaches[i] = beaches[i].scale(0.25, 0.25);
             switch(i) {
                 case 0:
                     beaches[i].keepOnlyBlue();
@@ -404,18 +421,35 @@ public class Picture extends SimplePicture {
                     beaches[i].mirrorHorizontal();
                     break;
                 case 7:
-                    beaches[i].mirrorGull();
+                    beaches[i].grayscale();
                     break;
                 case 8:
-                    beaches[i].mirrorArms();
+                    beaches[i].keepOnlyBlue();
                     break;
                 case 9:
-                    beaches[i].mirrorVerticalRightToLeft();
+                    beaches[i].negate();
                     break;
                 case 10:
-                    beaches[i].mirrorTemple();
+                    beaches[i] = beaches[i].scale(10, 10);
                     break;
-                     
+                case 11:
+                    beaches[i].keepOnlyBlue();
+                    break;
+                case 12: 
+                    beaches[i].keepOnlyGreen();
+                    break;
+                case 13: 
+                    beaches[i].keepOnlyRed();
+                    break;
+                case 14: 
+                    beaches[i].negate();
+                    break;
+                case 15:
+                    beaches[i].grayscale();
+                    break;
+                case 16:
+                    beaches[i].mirrorDiagonal();
+                    break;
             }
         }
         int beachCount = 0;
@@ -425,7 +459,9 @@ public class Picture extends SimplePicture {
                 beachCount++;
             }
         }
-        
+        Picture mark = new Picture("blue-mark.jpg");
+        mark = mark.scale(0.25, 0.25);
+         this.copy(mark, 180,250);
     }
 
     /**
